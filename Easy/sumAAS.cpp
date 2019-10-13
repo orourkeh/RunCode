@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -12,24 +12,27 @@ int main(int argc, char* argv[])
 	inputFile.open(argv[1]);
 
 	string line;
-	vector<int> numbers;
 
-	
 	while(getline(inputFile, line))
 	{
-		int num;
+		int low, high, sum = 0;
 		stringstream ss(line);
+		ss >> low >> high;
 
-		while(ss >> hex >> num)
+		if (low > high)
 		{
-			char ascii = num;
-
-			cout << ascii;
+			int tmp = low;
+			low = high;
+			high = tmp;
 		}
-		
 
-		
+		for(int i = low; i <= high; i++)
+		{
+			sum += i;
+		}
+		cout << sum << endl;
 	}
+
 
 
 }
